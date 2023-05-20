@@ -86,7 +86,7 @@ def get_image(api_key):
         print(f"Problem with decoding response: {e}")
         raise
     
-    url = metadata['url']
+    url = metadata.get('url', '')
     apod_json_path = 'data/apod.json'
     with open(apod_json_path, 'w') as f:
         json.dump(metadata, f, indent=4)
@@ -155,8 +155,8 @@ def print_wallpaper_info(metadata):
         metadata (dict): The metadata of the wallpaper image.
     """
     
-    date, title, copyright = metadata['date'], metadata['title'], metadata['copyright']
-    explanation = metadata['explanation']
+    date, title, copyright = metadata.get('date', ''), metadata.get('title', ''), metadata.get('copyright', '')
+    explanation = metadata.get('explanation', '')
     print(f"[{date}] {title} | {copyright}")
     print(explanation)
 
@@ -170,9 +170,13 @@ if __name__ == "__main__":
         print(f"Problem with reading or decoding config file: {e}")
         exit(1)
         
-    api_key = config['api_key']
-    default_wallpaper_path = config['default_wallpaper']
-    style = config['style']
+    api_key = config.get('api_key', '')
+    default_wallpaper_path = config.get('default_wallpaper', '')
+    style = config.get('style', '') 
+    
+    if not (api_key and default_wallpaper_path and style):
+        print("Problem with getting configs: at least one field is empty! Complete it and try again.")
+        exit()
     
     # Setting wallpaper procedure
     try:
