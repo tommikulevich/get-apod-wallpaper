@@ -4,7 +4,7 @@
 
 > **Environment:** Visual Studio 1.78.2 (user setup) | **Python 3.10.9** (conda).
 
-This script allows the user to **get and set the APOD (Astronomy Picture of the Day) wallpaper** using the NASA API. 
+This script allows the user to **get and set the APOD (Astronomy Picture of the Day) wallpaper** using the NASA API (at the moment only on Windows systems). 
 In addition, metadata with detailed information about the image are downloaded from the response, which are also printed. 
 At the first start-up, a configuration file is generated, which must be supplemented with user data. It looks like this:
 
